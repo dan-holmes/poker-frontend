@@ -2,6 +2,7 @@ import './App.css';
 import {useState} from 'react';
 import Pot from './Pot.js';
 import Hands from './Hands.js';
+import CommunityCards from './CommunityCards.js'
 const axios = require('axios');
 
 
@@ -33,6 +34,7 @@ function App() {
     return (
       <div className="App">
         <Pot value={round.data.pot} />
+        <CommunityCards data={round.data.community_cards} />
         <Hands hands={round.data.hands} />
       </div>
     )
