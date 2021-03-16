@@ -10,6 +10,7 @@ export default class BettingForm extends React.Component {
   
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.refresh = this.props.refresh.bind(this);
     }
   
     handleChange(event) {
@@ -26,6 +27,9 @@ export default class BettingForm extends React.Component {
             data: data,
             headers: { "Content-Type": "multipart/form-data" },
           })
+            .then(() => {
+                this.props.refresh()
+            })
             .catch(function (response) {
               console.log(response);
             });
@@ -33,6 +37,9 @@ export default class BettingForm extends React.Component {
     }
   
     render() {
+      if (this.props.winner) {
+        return null
+      }
       return (
         <form onSubmit={this.handleSubmit}>
             <input

@@ -26,6 +26,20 @@ function App() {
         setError(error)
       })
   }
+
+  const refresh = () => {
+    setIsLoaded(false)
+  }
+
+  const new_round = () => {
+    axios.get('http://localhost:9292/round/new')
+      .then(() => {
+        refresh()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
     
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -37,7 +51,10 @@ function App() {
         <Pot value={round.data.pot} />
         <CommunityCards data={round.data.community_cards} />
         <Hands hands={round.data.hands} player_to_bet={round.data.player_to_bet} />
-        <BettingForm current_bet={round.data.current_bet} player_to_bet={round.data.player_to_bet} />
+        <BettingForm current_bet={round.data.current_bet} player_to_bet={round.data.player_to_bet} refresh={refresh} winner={round.data.winner} />
+        <button onClick={new_round}>
+          New Round
+        </button>
       </div>
     )
   }
