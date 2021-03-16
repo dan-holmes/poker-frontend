@@ -4,6 +4,7 @@ import Pot from './Pot.js';
 import Hands from './Hands.js';
 import CommunityCards from './CommunityCards.js'
 import BettingForm from './BettingForm.js'
+import JoinGameForm from './JoinGameForm.js'
 const axios = require('axios');
 
 
@@ -13,6 +14,7 @@ function App() {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [token, setToken] = useState(null) 
 
   if (!(isLoading || isLoaded)) {
     setIsLoading(true)
@@ -46,6 +48,19 @@ function App() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
+    if (token === null) {
+      return <JoinGameForm setToken={setToken} refresh={refresh} />
+    }
+    if (round.data.round === false) {
+      return (
+        <div className="App">
+          <Hands hands={round.data.hands} player_to_bet={null} />
+          <button onClick={new_round}>
+              New Round
+            </button>
+        </div>
+      )
+    }
     return (
       <div className="App">
         <Pot value={round.data.pot} />

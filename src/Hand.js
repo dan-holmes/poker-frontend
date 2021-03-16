@@ -1,3 +1,4 @@
+import Player from './Player.js'
 import Card from './Card.js'
 
 export default function Hand(props) {
@@ -9,7 +10,7 @@ export default function Hand(props) {
     }
     return (
         <div className={ className }>
-            <h4>{ props.data.player }</h4>
+            <Player data={props.data.player} />
             {props.data.cards.map(card => (
                 <Card key={card.suit + card.value} data={card} />
             ))}
