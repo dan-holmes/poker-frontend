@@ -3,6 +3,7 @@ import {useState} from 'react';
 import Pot from './Pot.js';
 import Hands from './Hands.js';
 import CommunityCards from './CommunityCards.js'
+import BettingForm from './BettingForm.js'
 const axios = require('axios');
 
 
@@ -35,7 +36,8 @@ function App() {
       <div className="App">
         <Pot value={round.data.pot} />
         <CommunityCards data={round.data.community_cards} />
-        <Hands hands={round.data.hands} />
+        <Hands hands={round.data.hands} player_to_bet={round.data.player_to_bet} />
+        <BettingForm current_bet={round.data.current_bet} player_to_bet={round.data.player_to_bet} />
       </div>
     )
   }

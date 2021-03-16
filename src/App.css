@@ -2,17 +2,21 @@
   text-align: center;
 }
 
-#hands {
-  flex-direction: row;
-}
-
 #community_cards {
   flex-direction: row;
 }
 
 .hand {
   float: left;
-  padding: 20px
+  padding: 20px;
+}
+
+.handToBet {
+  float: left;
+  padding: 20px;
+  border: gold;
+  border-style: solid;
+  border-color: gold;
 }
 
 .redCard {
@@ -25,4 +29,9 @@
   color: black;
   float: left;
   padding: 5px;
+}
+
+#bettingForm {
+  float: left;
+  clear: left;
 }
