@@ -25,7 +25,10 @@ export default class BettingForm extends React.Component {
             method: "post",
             url: "http://localhost:9292/bets",
             data: data,
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: { 
+              "Content-Type": "multipart/form-data",
+              'Authorization': `token ${this.props.token}`
+            },
           })
             .then(() => {
                 this.props.refresh()
