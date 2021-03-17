@@ -5,22 +5,20 @@ export default class BettingForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        value: props.current_bet
+        amount: 0
       };
   
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.refresh = this.props.refresh.bind(this);
     }
   
     handleChange(event) {
-       this.setState({value: event.target.value});
+       this.setState({amount: event.target.value});
     }
 
     handleSubmit(event) {
         let data = new FormData();
-        data.append('player_name', this.props.player_to_bet);
-        data.append('amount', this.state.value);
+        data.append('amount', this.state.amount);
         axios({
             method: "post",
             url: "http://localhost:9292/bets",
@@ -30,9 +28,6 @@ export default class BettingForm extends React.Component {
               'Authorization': `token ${this.props.token}`
             },
           })
-            .then(() => {
-                this.props.refresh()
-            })
             .catch(function (response) {
               console.log(response);
             });
@@ -40,7 +35,10 @@ export default class BettingForm extends React.Component {
     }
   
     render() {
-      if (this.props.winner) {
+      if (this.props.round.data.winner) {
+        return null
+      }
+      if (this.props.round.data.player_to_bet !== this.props.name) {
         return null
       }
       return (
@@ -48,7 +46,7 @@ export default class BettingForm extends React.Component {
             <input
                 name="amount"
                 type="number"
-                value={this.state.value}
+                value={this.state.amount}
                 onChange={this.handleChange} />
             <input type="submit" value="Submit" />
         </form>

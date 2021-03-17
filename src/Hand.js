@@ -11,8 +11,8 @@ export default function Hand(props) {
     return (
         <div className={ className }>
             <Player data={props.data.player} />
-            {props.data.cards.map(card => (
-                <Card key={card.suit + card.value} data={card} />
+            {props.data.cards.map((card, index) => (
+                <Card key={props.data.player + index} data={card} />
             ))}
         </div>
     )

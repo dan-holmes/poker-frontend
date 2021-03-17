@@ -11,7 +11,8 @@ export default class JoinGameForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setToken = this.props.setToken.bind(this);
-        this.refresh = this.props.refresh.bind(this);
+        this.setName = this.props.setName.bind(this);
+        this.getData = this.props.getData.bind(this);
     }
   
     handleChange(event) {
@@ -29,7 +30,8 @@ export default class JoinGameForm extends React.Component {
         })
         .then((response) => {
             this.setToken(response.data.token)
-            this.refresh()
+            this.setName(this.state.name)
+            this.getData()
         })
         .catch((error) => {
             console.log(error)
