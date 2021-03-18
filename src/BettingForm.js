@@ -8,8 +8,8 @@ export default class BettingForm extends React.Component {
         amount: 0
       };
   
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
   
     handleChange(event) {
@@ -21,7 +21,7 @@ export default class BettingForm extends React.Component {
         data.append('amount', this.state.amount);
         axios({
             method: "post",
-            url: process.env.REACT_APP_BACKEND_URL + "/bets",
+            url: this.props.backend_url + "/bets",
             data: data,
             headers: { 
               "Content-Type": "multipart/form-data",

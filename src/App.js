@@ -9,20 +9,39 @@ const axios = require('axios');
 
 export default class App extends Component {
   intervalID;
-
+  
   state = {
     round: null,
     token: null,
-    name: null
+    name: null,
+    backend_url: null
   }
 
   componentWillUnmount() {
     clearTimeout(this.intervalID);
   }
 
+  componentDidMount() {
+    switch(process.env.NODE_ENV) {
+      case 'production':
+        this.setState({
+          backend_url: 'https://dh-poker.herokuapp.com'
+        })
+        break;
+      case 'development':
+        this.setState({
+          backend_url: 'http://localhost:9292'
+        })
+        break;
+      default:
+        this.setState({
+          backend_url: 'https://dh-poker.herokuapp.com'
+        })
+    }
+  }
+
   getData = () => {
-    console.log(process.env.REACT_APP_BACKEND_URL + '/round')
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/round', {
+    axios.get(this.state.backend_url + '/round', {
           headers: {
             'Authorization': `token ${this.state.token}`
           }
@@ -51,7 +70,7 @@ export default class App extends Component {
   }
 
   new_round = () => {
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/round/new')
+    axios.get(this.state.backend_url + '/round/new')
       .catch((error) => {
         console.log(error)
       })
@@ -60,7 +79,7 @@ export default class App extends Component {
   render() {
     let round = this.state.round
       if (this.state.token === null) {
-        return <JoinGameForm setToken={this.setToken} setName={this.setName} getData={this.getData} />
+        return <JoinGameForm setToken={this.setToken} setName={this.setName} getData={this.getData} backend_url={this.state.backend_url} />
       } else if (this.state.round === null) {
           return <div>Loading...</div>; 
       } else {
@@ -79,7 +98,7 @@ export default class App extends Component {
             <Pot value={round.data.pot} />
             <CommunityCards data={round.data.community_cards} />
             <Hands hands={round.data.hands} player_to_bet={round.data.player_to_bet} />
-            <BettingForm round={round} token={this.state.token} name={this.state.name} />
+            <BettingForm round={round} token={this.state.token} name={this.state.name} backend_url={this.state.backend_url}/>
             <button onClick={this.new_round}>
               New Round
             </button>
