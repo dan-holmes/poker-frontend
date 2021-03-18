@@ -21,7 +21,7 @@ export default class BettingForm extends React.Component {
         data.append('amount', this.state.amount);
         axios({
             method: "post",
-            url: "http://localhost:9292/bets",
+            url: process.env.REACT_APP_BACKEND_URL + "/bets",
             data: data,
             headers: { 
               "Content-Type": "multipart/form-data",

@@ -21,7 +21,8 @@ export default class App extends Component {
   }
 
   getData = () => {
-    axios.get('http://localhost:9292/round', {
+    console.log(process.env.REACT_APP_BACKEND_URL + '/round')
+    axios.get(process.env.REACT_APP_BACKEND_URL + '/round', {
           headers: {
             'Authorization': `token ${this.state.token}`
           }
@@ -50,7 +51,7 @@ export default class App extends Component {
   }
 
   new_round = () => {
-    axios.get('http://localhost:9292/round/new')
+    axios.get(process.env.REACT_APP_BACKEND_URL + '/round/new')
       .catch((error) => {
         console.log(error)
       })

@@ -20,11 +20,12 @@ export default class JoinGameForm extends React.Component {
     }
 
     handleSubmit(event) {
+        console.log(process.env)
         let data = new FormData();
         data.append('name', this.state.name);
         axios({
             method: "post",
-            url: "http://localhost:9292/players",
+            url: process.env.REACT_APP_BACKEND_URL + "/players",
             data: data,
             headers: { "Content-Type": "multipart/form-data" },
         })
