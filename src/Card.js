@@ -2,8 +2,10 @@ export default function Card(props) {
     let className
     if (props.card.suit === 'H' || props.card.suit === 'D') {
         className = 'redCard'
-    } else {
+    } else if (props.card.suit === 'C' || props.card.suit === 'S') {
         className = 'blackCard'
+    } else {
+        className = 'backOfCard'
     }
 
     const suit = () => {
@@ -77,6 +79,14 @@ export default function Card(props) {
             default:
                 return 'cardSuits'
         }
+    }
+
+    if (className === 'backOfCard') {
+        return (
+            <div className='backOfCard'>
+                <div className='innerBackOfCard'></div>
+            </div>
+        )
     }
 
     return (

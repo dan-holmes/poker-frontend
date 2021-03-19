@@ -1,39 +1,124 @@
+body {
+  background-color: white;
+}
+
 .App {
   text-align: center;
+  height: 100%;
 }
 
 #community_cards {
   flex-direction: row;
 }
 
+#table {
+  display: flex;
+  flex-direction: column;
+  background-color: #39bf08;
+  width: fit-content;
+  margin: auto;
+  padding: 25px;
+  border-style: ridge;
+  border-color: rgb(104, 42, 42);
+  border-width: 5px;
+  border-radius: 70px;
+  margin-top: 10px;
+}
+
+#middleTable {
+  padding: 30px;
+  position: relative;
+  width: 600px;
+  margin: auto;
+  height: 120px;
+}
+
+#pot {
+  position: absolute;
+  left: 520px
+}
+
+#potTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#potValue {
+  font-size: 40px;
+}
+
+#currentBet {
+  font-size: 20px;
+}
+
+#myHand {
+  margin:auto;
+}
+
+#otherHands {
+  margin:auto;
+}
+
 .hand {
   float: left;
-  padding: 20px;
+  padding: 8px;
 }
 
 .handToBet {
   float: left;
-  padding: 20px;
+  padding: 5px;
   border-style: solid;
+  border-width: 3px;
   border-color: grey;
 }
 
 .handWinner {
   float: left;
-  padding: 20px;
+  padding: 5px;
   border-style: solid;
   border-color: gold;
 }
 
-.redCard, .blackCard {
+.player {
+  position: relative;
+  height: 45px;
+  width: 140px;
+  margin: auto;
+  border-style: solid;
+  border-color: #1b4025;
+  border-radius: 5px;
+  border-width: 2px;
+}
+
+.playerName {
+  font-weight: bold;
+  position: absolute;
+  left: 10%;
+}
+
+.playerStack {
+  font-weight: bold;
+  position: absolute;
+  right: 10%;
+}
+
+.playerStatus {
+  position: absolute;
+  left: 10%;
+  top: 20px;
+}
+
+.redCard, .blackCard, .backOfCard {
   float: left;
-  margin: 5px;
-  width: 90px;
-  height: 130px;
+  margin: 3px;
+  width: 81px;
+  height: 117px;
   border-style: groove;
   border-color: grey;
   border-width: 2px;
+  border-radius: 5px;
   font-size: 20px;
+  background-color: white;
 }
 
 .redCard {
@@ -42,6 +127,24 @@
 
 .blackCard {
   color: black;
+}
+
+.innerBackOfCard {
+  background: cornflowerblue;
+  background:
+  linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+  linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+  linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 5px -10px,
+  linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 5px -10px,
+  cornflowerblue;
+  background-size: 10px 20px;
+  height: 107px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.upperCard, .lowerCard {
+  font-size: 20px;
 }
 
 .upperCard {
@@ -59,8 +162,7 @@
 
 .lowerCard {
   height: 18%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 4%;
   text-align: right;
   margin-right: 5%;
 }

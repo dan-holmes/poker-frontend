@@ -1,9 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
-import Pot from './Pot.js';
-import Hands from './Hands.js';
-import CommunityCards from './CommunityCards.js'
-import BettingForm from './BettingForm.js'
+import Table from './Table.js';
+import BettingOptions from './BettingOptions.js'
 import JoinGameForm from './JoinGameForm.js'
 const axios = require('axios');
 
@@ -47,6 +45,7 @@ export default class App extends Component {
           }
         })
       .then((response) => {
+        console.log(response.data)
         this.setState({
           round: response.data
         })
@@ -76,6 +75,12 @@ export default class App extends Component {
       })
   }
 
+  bettingOptionsView = () => {
+    if (this.state.round.hands.map(hand => hand.player.name).includes(this.state.name)) {
+      return <BettingOptions round={this.state.round} token={this.state.token} name={this.state.name} backend_url={this.state.backend_url} />
+    }
+  }
+
   render() {
     let round = this.state.round
       if (this.state.token === null) {
@@ -83,22 +88,10 @@ export default class App extends Component {
       } else if (this.state.round === null) {
           return <div>Loading...</div>; 
       } else {
-        if (round.round === false) {
-          return (
-            <div className="App">
-              <Hands hands={round.hands} player_to_bet={null} winner={round.winner} />
-              <button onClick={this.new_round}>
-                  New Round
-                </button>
-            </div>
-          )
-        }
         return (
           <div className="App">
-            <Pot value={round.pot} />
-            <CommunityCards cards={round.community_cards} />
-            <Hands hands={round.hands} player_to_bet={round.player_to_bet} winner={round.winner} />
-            <BettingForm round={round} token={this.state.token} name={this.state.name} backend_url={this.state.backend_url}/>
+            <Table round={round} name={this.state.name} />
+            {this.bettingOptionsView()}
             <button onClick={this.new_round}>
               New Round
             </button>
