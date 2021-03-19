@@ -1,6 +1,6 @@
 const hashCode = function(string) {
     var hash = 0;
-    if (string.length == 0) {
+    if (string.length === 0) {
         return hash;
     }
     for (let i = 0; i < string.length; i++) {
