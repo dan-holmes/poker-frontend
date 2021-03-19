@@ -14,21 +14,74 @@
 .handToBet {
   float: left;
   padding: 20px;
-  border: gold;
+  border-style: solid;
+  border-color: grey;
+}
+
+.handWinner {
+  float: left;
+  padding: 20px;
   border-style: solid;
   border-color: gold;
 }
 
+.redCard, .blackCard {
+  float: left;
+  margin: 5px;
+  width: 90px;
+  height: 130px;
+  border-style: groove;
+  border-color: grey;
+  border-width: 2px;
+  font-size: 20px;
+}
+
 .redCard {
   color: red;
-  float: left;
-  padding: 5px;
 }
 
 .blackCard {
   color: black;
-  float: left;
-  padding: 5px;
+}
+
+.upperCard {
+  height: 18%;
+  margin-bottom: 2%;
+  text-align: left;
+  margin-left: 5%;
+}
+
+.middleCard {
+  position: relative;
+  height: 58%;
+
+}
+
+.lowerCard {
+  height: 18%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: right;
+  margin-right: 5%;
+}
+
+.cardPicture, .cardSuits {
+  margin: 0;
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardSuits {
+  font-size: 15px;
+}
+
+.cardPicture {
+  font-size: 40px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold
 }
 
 #bettingForm {

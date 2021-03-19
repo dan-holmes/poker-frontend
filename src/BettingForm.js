@@ -35,10 +35,10 @@ export default class BettingForm extends React.Component {
     }
   
     render() {
-      if (this.props.round.data.winner) {
+      if (this.props.round.winner) {
         return null
       }
-      if (this.props.round.data.player_to_bet !== this.props.name) {
+      if (this.props.round.player_to_bet !== this.props.name) {
         return null
       }
       return (

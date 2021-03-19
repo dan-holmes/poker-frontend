@@ -1,10 +1,10 @@
 import Card from './Card.js'
 
-export default function Hands(props) {
+export default function CommunityCards(props) {
     return (
         <div id='community_cards'>
-            {props.data.map(card => (
-                <Card key={card.suit + card.value} data={card} />
+            {props.cards.map(card => (
+                <Card key={card.suit + card.value} card={card} />
             ))}
         </div>
     )

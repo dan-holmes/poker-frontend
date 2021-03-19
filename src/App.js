@@ -48,7 +48,7 @@ export default class App extends Component {
         })
       .then((response) => {
         this.setState({
-          round: response
+          round: response.data
         })
         this.intervalID = setTimeout(this.getData.bind(this), 1000);
       })
@@ -83,10 +83,10 @@ export default class App extends Component {
       } else if (this.state.round === null) {
           return <div>Loading...</div>; 
       } else {
-        if (round.data.round === false) {
+        if (round.round === false) {
           return (
             <div className="App">
-              <Hands hands={round.data.hands} player_to_bet={null} />
+              <Hands hands={round.hands} player_to_bet={null} winner={round.winner} />
               <button onClick={this.new_round}>
                   New Round
                 </button>
@@ -95,9 +95,9 @@ export default class App extends Component {
         }
         return (
           <div className="App">
-            <Pot value={round.data.pot} />
-            <CommunityCards data={round.data.community_cards} />
-            <Hands hands={round.data.hands} player_to_bet={round.data.player_to_bet} />
+            <Pot value={round.pot} />
+            <CommunityCards cards={round.community_cards} />
+            <Hands hands={round.hands} player_to_bet={round.player_to_bet} winner={round.winner} />
             <BettingForm round={round} token={this.state.token} name={this.state.name} backend_url={this.state.backend_url}/>
             <button onClick={this.new_round}>
               New Round
