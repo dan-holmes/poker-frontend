@@ -13,7 +13,9 @@ const hashCode = function(string) {
 
 export default function Player(props) {
     const status = () => {
-        if (props.winner === props.player.name) {
+        if (props.folded) {
+            return 'Folded'
+        } else if (props.winner === props.player.name) {
             return 'Winner! +' + props.pot
         } else if (props.winner) {
             return 'Loser'
@@ -28,6 +30,7 @@ export default function Player(props) {
         const options = ['Aqua', 'CornflowerBlue', 'Brown', 'OrangeRed', 'DarkOrchid', 'IndianRed', 'Ivory', 'Plum', 'MediumTurquoise', 'DarkGreen', 'LightGrey', 'Violet', 'DarkMagenta']
         return options[hashCode(props.player.name) % options.length]
     }
+
     return (
         <div className='player' style={{backgroundColor: backgroundColor()}}>
             <div className='playerName'>{props.player.name}</div>

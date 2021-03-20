@@ -23,9 +23,18 @@ export default function Hand(props) {
             return 'hand'
         }
     }
+
+    const opacity = () => {
+        if (props.hand.folded) {
+            return 0.5
+        } else {
+            return 1
+        }
+    }
+
     return (
-        <div className={ className() }>
-            <Player player={props.hand.player} bet={props.hand.bet} winner={props.winner} pot={props.pot}/>
+        <div className={ className() } style={{opacity: opacity()}}>
+            <Player player={props.hand.player} bet={props.hand.bet} winner={props.winner} pot={props.pot} folded={props.hand.folded}/>
             {props.hand.cards.map((card, index) => (
                 <Card key={props.hand.player + index} card={card} />
             ))}

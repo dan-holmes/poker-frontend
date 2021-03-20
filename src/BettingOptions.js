@@ -20,6 +20,20 @@ export default function BettingOptions(props) {
             });
     }
 
+    const fold = () => {
+        axios({
+            method: "post",
+            url: props.backend_url + "/folds",
+            headers: { 
+              "Content-Type": "multipart/form-data",
+              'Authorization': `token ${props.token}`
+            },
+          })
+            .catch(function (response) {
+              console.log(response);
+            });
+    }
+
     const betSoFar = props.round.hands.filter((hand) => { return hand.player.name === props.name })[0].bet
 
     if (props.round.winner) {
@@ -36,6 +50,9 @@ export default function BettingOptions(props) {
             Bet so far: { betSoFar }
             <CallButton current_bet={props.round.current_bet} betSoFar={betSoFar} bet={bet}/>
             <BettingForm betSoFar={betSoFar} current_bet={props.round.current_bet} bet={bet} />
+            <button onClick={fold}>
+            Fold
+            </button>
         </div>
     )   
 }
