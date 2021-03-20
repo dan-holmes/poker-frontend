@@ -49,7 +49,7 @@ export default function BettingOptions(props) {
         <div id='bettingOptions'>
             <div id='betSoFar'>Bet so far: { betSoFar }</div>
             <div id='betButtons'>
-              <BettingForm betSoFar={betSoFar} current_bet={props.round.current_bet} bet={bet} /> 
+              <BettingForm betSoFar={betSoFar} current_bet={props.round.current_bet} minRaise={props.round.min_raise} bet={bet} /> 
               <CallButton current_bet={props.round.current_bet} betSoFar={betSoFar} bet={bet}/> 
               <button id='foldButton' onClick={fold}>
                 Fold

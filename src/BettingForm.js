@@ -4,7 +4,7 @@ export default class BettingForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        amount: this.props.current_bet
+        amount: this.props.current_bet + this.props.minRaise
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ export default class BettingForm extends React.Component {
                 id='betInput'
                 name="amount"
                 type="number"
-                min={String(this.props.current_bet)}
+                min={String(this.props.current_bet + this.props.minRaise)}
                 value={this.state.amount}
                 onChange={this.handleChange}
                 style={{width: "50px"}} />
