@@ -19,7 +19,9 @@ export default function Player(props) {
             return 'Winner! +' + props.pot
         } else if (props.winner) {
             return 'Loser'
-        } else if (props.bet) {
+        } else if (props.bet === 0) {
+            return 'Check'
+        } else if (props.bet > 0) {
             return "Bet " + props.bet
         } else {
             return "..."

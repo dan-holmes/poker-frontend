@@ -25,15 +25,16 @@ export default class BettingForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}>
             <label>
-              Raise to:
-            </label>
-            <input
+              Raise to: <input
+                id='betInput'
                 name="amount"
                 type="number"
                 min={String(this.props.current_bet)}
                 value={this.state.amount}
-                onChange={this.handleChange} />
-            <input type="submit" value="Bet" />
+                onChange={this.handleChange}
+                style={{width: "50px"}} />
+              </label>
+            <input id='betButton' type="submit" value="Bet" />
         </form>
       );
     }

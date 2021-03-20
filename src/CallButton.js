@@ -4,7 +4,16 @@ export default function CallButton(props) {
     const callBet = () => {
         props.bet(betToCall)
     }
+
+    const buttonName = () => {
+        if (betToCall === 0) {
+            return 'Check'
+        } else {
+            return 'Call (' + betToCall + ')'
+        }
+    }
+
     return (
-        <button onClick={callBet}>Call ({betToCall})</button>
+        <button id='callButton' onClick={callBet}>{buttonName()}</button>
     )
 }

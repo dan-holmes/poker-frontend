@@ -186,7 +186,44 @@ body {
   font-weight: bold
 }
 
-#bettingForm {
-  float: left;
-  clear: left;
+#bettingOptions {
+  background-color: lavender;
+  width: 200px;
+  position: absolute;
+  left: calc(50% + 115px);
+  top: 475px;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
 }
+
+#betSoFar {
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+#betButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+#bettingForm, #callButton, #foldButton {
+  position: relative;
+}
+
+#callButton {
+  background-color: cornflowerblue;
+}
+
+#foldButton {
+  background-color: indianred;
+}
+
+#betButton {
+  background-color: MediumSeaGreen;
+}
+
+#betInput {
+  margin-top: 5px;
+}
+

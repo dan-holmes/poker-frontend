@@ -34,7 +34,7 @@ export default function BettingOptions(props) {
             });
     }
 
-    const betSoFar = props.round.hands.filter((hand) => { return hand.player.name === props.name })[0].bet
+    const betSoFar = props.round.hands.filter((hand) => { return hand.player.name === props.name })[0].bet || 0
 
     if (props.round.winner) {
         return null
@@ -47,12 +47,15 @@ export default function BettingOptions(props) {
 
     return (
         <div id='bettingOptions'>
-            Bet so far: { betSoFar }
-            <CallButton current_bet={props.round.current_bet} betSoFar={betSoFar} bet={bet}/>
-            <BettingForm betSoFar={betSoFar} current_bet={props.round.current_bet} bet={bet} />
-            <button onClick={fold}>
-            Fold
-            </button>
+            <div id='betSoFar'>Bet so far: { betSoFar }</div>
+            <div id='betButtons'>
+              <BettingForm betSoFar={betSoFar} current_bet={props.round.current_bet} bet={bet} /> 
+              <CallButton current_bet={props.round.current_bet} betSoFar={betSoFar} bet={bet}/> 
+              <button id='foldButton' onClick={fold}>
+                Fold
+              </button>
+            </div>
+            
         </div>
     )   
 }
