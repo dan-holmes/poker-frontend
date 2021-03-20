@@ -34,7 +34,7 @@ export default function BettingOptions(props) {
             });
     }
 
-    const betSoFar = props.round.hands.filter((hand) => { return hand.player.name === props.name })[0].bet || 0
+    const betSoFar = props.round.hands.filter((hand) => { return hand.player.name === props.name })[0].bet_so_far || 0
 
     if (props.round.winner) {
         return null
