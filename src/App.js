@@ -75,6 +75,26 @@ export default class App extends Component {
       })
   }
 
+  leave_table = () => {
+    axios({
+      method: "post",
+      url: this.state.backend_url + "/leave",
+      headers: { 
+        "Content-Type": "multipart/form-data",
+        'Authorization': `token ${this.state.token}`
+      },
+    })
+      .then(() => {
+        this.setState({
+          name: null,
+          token: null
+        })
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  }
+
   bettingOptionsView = () => {
     if (this.state.round.hands.map(hand => hand.player.name).includes(this.state.name)) {
       return <BettingOptions round={this.state.round} token={this.state.token} name={this.state.name} backend_url={this.state.backend_url} />
@@ -94,6 +114,9 @@ export default class App extends Component {
             {this.bettingOptionsView()}
             <button onClick={this.new_round}>
               New Round
+            </button>
+            <button onClick={this.leave_table}>
+              Leave Table
             </button>
           </div>
         )
