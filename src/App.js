@@ -76,23 +76,25 @@ export default class App extends Component {
   }
 
   leave_table = () => {
-    axios({
-      method: "post",
-      url: this.state.backend_url + "/leave",
-      headers: { 
-        "Content-Type": "multipart/form-data",
-        'Authorization': `token ${this.state.token}`
-      },
-    })
-      .then(() => {
-        this.setState({
-          name: null,
-          token: null
-        })
+    if(window.confirm("Are you sure you want to leave?")) {
+      axios({
+        method: "post",
+        url: this.state.backend_url + "/leave",
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          'Authorization': `token ${this.state.token}`
+        },
       })
-      .catch(function (response) {
-        console.log(response);
-      });
+        .then(() => {
+          this.setState({
+            name: null,
+            token: null
+          })
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+    }
   }
 
   bettingOptionsView = () => {
@@ -101,11 +103,16 @@ export default class App extends Component {
     }
   }
 
-  newRoundButtonView = () => {
+  footerButtons = () => {
     if (this.state.round.completed || this.state.round.round === false) {
-      return <button onClick={this.new_round}>
-      New Round
-    </button>
+      return <div>
+        <button onClick={this.new_round}>
+          New Round
+      </button>
+      <button onClick={this.leave_table}>
+        Leave Table
+      </button>
+    </div>
     }
   }
 
@@ -120,10 +127,7 @@ export default class App extends Component {
           <div className="App">
             <Table round={round} name={this.state.name} />
             {this.bettingOptionsView()}
-            {this.newRoundButtonView()}
-            <button onClick={this.leave_table}>
-              Leave Table
-            </button>
+            {this.footerButtons()}
           </div>
         )
       }
