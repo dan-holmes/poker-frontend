@@ -101,6 +101,14 @@ export default class App extends Component {
     }
   }
 
+  newRoundButtonView = () => {
+    if (this.state.round.completed || this.state.round.round === false) {
+      return <button onClick={this.new_round}>
+      New Round
+    </button>
+    }
+  }
+
   render() {
     let round = this.state.round
       if (this.state.token === null) {
@@ -112,9 +120,7 @@ export default class App extends Component {
           <div className="App">
             <Table round={round} name={this.state.name} />
             {this.bettingOptionsView()}
-            <button onClick={this.new_round}>
-              New Round
-            </button>
+            {this.newRoundButtonView()}
             <button onClick={this.leave_table}>
               Leave Table
             </button>
