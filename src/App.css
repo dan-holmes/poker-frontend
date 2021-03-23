@@ -227,3 +227,25 @@ body {
   margin-top: 5px;
 }
 
+#joinGamePage {
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  text-align: center;
+  background-color: #39bf08;
+  padding: 25px;
+  border-style: ridge;
+  border-color: rgb(104, 42, 42);
+  border-width: 5px;
+  border-radius: 70px;
+  margin-top: 10px;
+}
+
+#joinGameHeader {
+  font-size: 70px;
+  padding: 10px;
+}
+
+#joinGameForm, #joinGameInput, #joinGameButton {
+  font-size: 20px;
+}

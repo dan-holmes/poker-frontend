@@ -41,16 +41,20 @@ export default class JoinGameForm extends React.Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-            <label>
-            Name: <input
-                name="name"
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Join" />
-        </form>
+        <div id='joinGamePage'>
+          <div id='joinGameHeader'>Poker</div>
+          <form onSubmit={this.handleSubmit} id='joinGameForm'>
+              <label>
+              Name: <input
+                  name="name"
+                  type="text"
+                  value={this.state.value}
+                  id='joinGameInput'
+                  onChange={this.handleChange} />
+              </label> <input id='joinGameButton' type="submit" value="Join Game" />
+              
+          </form>
+        </div>
       );
     }
   }
